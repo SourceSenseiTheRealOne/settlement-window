@@ -132,6 +132,25 @@ The browser proof launches an isolated headless Brave process, requests a live D
 - Deployment receipt: success
 - Runtime bytecode: 3,216 bytes
 
+## Verified Shannon proof
+
+- Market: `ETH-0-01SEP26-1100/tUSDC` (`0x0000000000000000000000000000000000000000000000000000000000010051`)
+- Protection: 1.0 NO/DOWN share purchased for 0.45 tUSDC; maximum payout 1.00 tUSDC
+- Protection transaction: [`0x2683372fa36bdeb2ddfd33661636abf79203632484942a9481477c0038242c0e`](https://shannon-explorer.somnia.network/tx/0x2683372fa36bdeb2ddfd33661636abf79203632484942a9481477c0038242c0e)
+- Receipt creation: [`0x9d2371ee1a08e4c5c9533a3729a004d5c8e8a6cea19edfee1a5f7d6250b02bee`](https://shannon-explorer.somnia.network/tx/0x9d2371ee1a08e4c5c9533a3729a004d5c8e8a6cea19edfee1a5f7d6250b02bee)
+- Settlement attestation: [`0x13a99d56a326680d107ea7926c932845fe1129f255d298d6d57afcbc3dffe487`](https://shannon-explorer.somnia.network/tx/0x13a99d56a326680d107ea7926c932845fe1129f255d298d6d57afcbc3dffe487)
+- Shield ID: `0x83ee536847a3e15657f006d6ff8a6f85c9a4378df47d884f07209c95c93e8cb7`
+- Current receipt state: `Settled`; redemption and finalization occur only after canonical DreamDEX resolution.
+
+The local `proofs/testnet-proof.json` artifact is generated from receipt and balance readbacks and is intentionally ignored because it carries mutable runtime state.
+
+```bash
+npx --yes pnpm@10.18.1 testnet:assemble
+npx --yes pnpm@10.18.1 testnet:finalize
+```
+
+`testnet:finalize` is idempotent: it refuses unresolved markets, redeems only a winning/voided held position, verifies receipt status `Resolved`, and appends final explorer evidence.
+
 ## Deploy the receipt registry to Shannon
 
 From WSL, with `TESTNET_PRIVATE_KEY` set only in your shell:
