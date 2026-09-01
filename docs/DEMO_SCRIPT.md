@@ -1,65 +1,73 @@
-# SettleShield Demo Script
+# SettleShield demo script
 
-Target length: 2 minutes 35 seconds.
+Target: 2 minutes 20 seconds to 2 minutes 45 seconds.
 
-## 0:00-0:20 | Problem
+Record the public showcase at:
 
-"A business sends a $1,000 ETH invoice. Payment confirmation may take 15 to 60 minutes. During that gap, the business is exposed to ETH falling before settlement completes. Existing prediction-market apps help users speculate. SettleShield uses the same Event Contract infrastructure to protect part of an external settlement."
+https://sourcesenseitherealone.github.io/settleshield/
 
-Show the SettleShield heading and the three properties: maximum loss is the protection cost, no leverage, no liquidation.
+Keep the browser at 1440 by 900 or larger. Do not show the local proof wallet, `.env.local`, browser extension settings, or private balances.
 
-## 0:20-0:45 | Configure
+## 0:00-0:20 - Problem
 
-1. Select **Crypto invoice**.
-2. Use reference `DEMO-INVOICE-001`.
-3. Enter `$1,000` settlement value.
-4. Select `15 minutes`.
-5. Enter a small testnet maximum cost and desired compensation that current liquidity supports.
-6. Select **Find protection**.
+Show the hero and protection properties.
 
-Say: "SettleShield is bounded protection, not insurance and not a guaranteed exchange rate. It refuses compensation above the invoice value."
+Narration:
 
-## 0:45-1:15 | Live terms
+> A business expects a one-thousand-dollar ETH payment, but confirmation may take fifteen minutes to an hour. The value can fall while settlement is pending. SettleShield uses DreamDEX Event Contracts to offset part of that short-term loss with a known upfront cost, no leverage, and no liquidation.
 
-Point to:
+## 0:20-0:48 - Configure bounded protection
 
-- ETH DOWN direction;
-- known maximum loss;
-- maximum payout;
-- maximum net offset;
-- current DOWN price;
-- visible DOWN shares;
-- DreamDEX pool explorer link.
+Scroll to the calculator. Keep the default one-thousand-dollar settlement, ten-dollar budget, and ten-dollar gross compensation cap. Select **Calculate protection**.
 
-Say: "These are live Shannon terms. The application reads typed `asset` and `intervalSec` fields, checks the canonical onchain market status, and prices only visible DOWN liquidity."
+Narration:
 
-## 1:15-1:45 | Execute
+> This Pages build is a static calculator, so it uses our verified forty-five-percent Shannon fill price as a reference rather than claiming a live quote. The same bounded rules run in the full application. A ten-dollar gross payout would cost four dollars and fifty cents, leaving a maximum net offset of five dollars and fifty cents. The cap is partial protection, not a guaranteed exchange rate.
 
-1. Connect the Shannon wallet.
-2. Select **Protect settlement**.
-3. Approve the wallet requests.
-4. Open the DreamDEX transaction link.
-5. Open the SettleShield receipt transaction.
+## 0:48-1:15 - Explain the product flow
 
-Say: "The order is IOC. Anything that does not fill is canceled immediately. Zero fills are rejected; partial fills are labeled partial protection. The receipt links the actual fill, not a requested amount."
+Point to direction, maximum loss, maximum payout, net offset, and protected shares.
 
-## 1:45-2:10 | External settlement
+Narration:
 
-1. Paste the real test invoice, bridge, or signed attestation reference.
-2. Select **Confirm settlement**.
-3. Open its explorer transaction.
+> The application discovers the matching ETH Event Contract, verifies its onchain trading state, reads visible DOWN liquidity, and rejects protection that exceeds the budget or available depth. Execution uses an immediate-or-cancel BUY NO order. Zero fills are rejected, and partial fills are reported as partial protection.
 
-Say: "This step connects an external economic event to the protection position without pretending SettleShield is the payment or bridge network."
+## 1:15-1:45 - Show the executed position
 
-## 2:10-2:30 | Resolve and compensate
+Scroll to **Verified position**. Open the BUY NO order in a new tab, then return.
 
-1. Select **Check Event Contract result**.
-2. Show the DreamDEX resolution transaction.
-3. Select **Complete protection receipt**.
-4. Show actual payout, redemption transaction when applicable, and final receipt transaction.
+Narration:
 
-Say: "If ETH DOWN wins, the NO position redeems and offsets part of the lost settlement value. If ETH UP wins, payout is zero and the known protection cost is lost. A void is recorded separately and pays the protocol-defined half value."
+> This is not a reconstructed success screen. The proof wallet bought exactly one NO share for zero-point-four-five tUSDC on Somnia Shannon. The order succeeded onchain, and the wallet balance readback confirmed the share. SettleShield then created a receipt linked to the actual fill rather than the requested amount.
 
-## 2:30-2:35 | Close
+## 1:45-2:08 - Link the external settlement
 
-"SettleShield turns Event Contracts into demand from payments, bridges, OTC desks, payroll, and treasuries. It protects settlement time, not speculation."
+Open the protection receipt and settlement attestation links, then return to the showcase.
+
+Narration:
+
+> The receipt stores the exposure, protection cost, protected shares, market expiry, and DreamDEX transaction hash. A separate attestation records that the external invoice or bridge transfer settled. SettleShield does not pretend to be the payment network. It links the external settlement to its protection position.
+
+## 2:08-2:30 - Resolution and final accounting
+
+Open the DreamDEX resolution and final receipt links.
+
+Narration:
+
+> In this run, ETH closed above its opening price, so YES won and the NO protection paid zero. SettleShield correctly skipped a losing redemption transaction and finalized the receipt with zero compensation. A DOWN win would redeem the held NO shares. A void is recorded separately under the protocol's void payout rules.
+
+## 2:30-2:40 - Close
+
+Return to the hero or repository link.
+
+Narration:
+
+> SettleShield turns Event Contracts into bounded protection for payments, bridges, OTC trades, payroll, and treasury transfers. It protects settlement time rather than creating another trading signal.
+
+## Required final frame
+
+Hold the final frame for three seconds with these URLs visible:
+
+- Showcase: https://sourcesenseitherealone.github.io/settleshield/
+- Source: https://github.com/SourceSenseiTheRealOne/settleshield
+- Public evidence: https://sourcesenseitherealone.github.io/settleshield/testnet-proof.json

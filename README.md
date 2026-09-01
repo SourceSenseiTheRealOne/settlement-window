@@ -199,7 +199,8 @@ A sanitized receipt is written to `proofs/testnet-proof.json`. Private keys are 
 
 ```text
 contracts/                       Solidity receipt registry and Foundry tests
-docs/DEMO_SCRIPT.md              under-three-minute demo narration
+docs/DEMO_SCRIPT.md              2-3 minute truthful demo narration
+docs/DORAHACKS_SUBMISSION.md      copy-ready DoraHacks form content and checklist
 docs/SUBMISSION.md               hackathon submission copy
 docs/SDK_FEEDBACK.md             required SDK and docs feedback
 scripts/testnet-proof.ts         real Shannon proof runner

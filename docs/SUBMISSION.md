@@ -94,5 +94,6 @@ The hackathon MVP simulates the external payment or bridge workflow and uses a r
 - Final protection receipt: https://shannon-explorer.somnia.network/tx/0x7fe410cbe2de2091947038b9a8168ddcefe5cbb70761e13465ada74b8cf7b04e
 - Public repository: https://github.com/SourceSenseiTheRealOne/settleshield
 - GitHub Pages showcase: https://sourcesenseitherealone.github.io/settleshield/
-- Demo: add 2-3 minute video URL before submission
+- Demo video: pending. Paste the final public 2-3 minute URL into `docs/DORAHACKS_SUBMISSION.md` before submission.
+- Copy-ready DoraHacks form content: `docs/DORAHACKS_SUBMISSION.md`
 - Public proof JSON: https://sourcesenseitherealone.github.io/settleshield/testnet-proof.json
