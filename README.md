@@ -140,7 +140,15 @@ The browser proof launches an isolated headless Brave process, requests a live D
 - Receipt creation: [`0x9d2371ee1a08e4c5c9533a3729a004d5c8e8a6cea19edfee1a5f7d6250b02bee`](https://shannon-explorer.somnia.network/tx/0x9d2371ee1a08e4c5c9533a3729a004d5c8e8a6cea19edfee1a5f7d6250b02bee)
 - Settlement attestation: [`0x13a99d56a326680d107ea7926c932845fe1129f255d298d6d57afcbc3dffe487`](https://shannon-explorer.somnia.network/tx/0x13a99d56a326680d107ea7926c932845fe1129f255d298d6d57afcbc3dffe487)
 - Shield ID: `0x83ee536847a3e15657f006d6ff8a6f85c9a4378df47d884f07209c95c93e8cb7`
-- Current receipt state: `Settled`; redemption and finalization occur only after canonical DreamDEX resolution.
+- Resolution transaction: [`0x745c0d0db69be1e189ce51dff001b61094e3fd52334a5e2ea348eb4e071fc1b5`](https://shannon-explorer.somnia.network/tx/0x745c0d0db69be1e189ce51dff001b61094e3fd52334a5e2ea348eb4e071fc1b5)
+- Final receipt transaction: [`0x7fe410cbe2de2091947038b9a8168ddcefe5cbb70761e13465ada74b8cf7b04e`](https://shannon-explorer.somnia.network/tx/0x7fe410cbe2de2091947038b9a8168ddcefe5cbb70761e13465ada74b8cf7b04e)
+- Final outcome: YES/UP won. The NO protection paid 0, no losing redemption was submitted, and the receipt is `Resolved`.
+
+## Public showcase
+
+- GitHub repository: https://github.com/SourceSenseiTheRealOne/settleshield
+- GitHub Pages: https://sourcesenseitherealone.github.io/settleshield/
+- The Pages build is a static interactive calculator and proof viewer. Live market discovery and wallet execution remain in the full Next.js application.
 
 The local `proofs/testnet-proof.json` artifact is generated from receipt and balance readbacks and is intentionally ignored because it carries mutable runtime state.
 

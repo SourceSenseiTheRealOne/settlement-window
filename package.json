@@ -14,7 +14,9 @@
     "testnet:proof": "tsx scripts/testnet-proof.ts",
     "testnet:recover": "tsx scripts/recover-testnet-proof.ts",
     "testnet:assemble": "tsx scripts/assemble-live-proof.ts",
-    "testnet:finalize": "tsx scripts/finalize-live-proof.ts"
+    "testnet:finalize": "tsx scripts/finalize-live-proof.ts",
+    "showcase:proof": "tsx scripts/showcase-proof.ts",
+    "pages:policy": "python scripts/verify-pages-workflow.py"
   },
   "dependencies": {
     "@somnia-chain/markets-sdk": "0.28.1",

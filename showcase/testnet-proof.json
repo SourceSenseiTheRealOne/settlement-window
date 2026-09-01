@@ -1,0 +1,113 @@
+{
+  "generatedAt": "2026-09-01T11:01:54.548Z",
+  "network": "Somnia Shannon Testnet",
+  "chainId": 50312,
+  "wallet": "0x35A1A08E53051092228259259174C1a1E301D104",
+  "registry": {
+    "address": "0xd64b02dDd9d088FA8547F9740B841BEd056bDD2D",
+    "explorer": "https://shannon-explorer.somnia.network/address/0xd64b02dDd9d088FA8547F9740B841BEd056bDD2D",
+    "runtimeBytecodeBytes": 3216
+  },
+  "marketId": "0x0000000000000000000000000000000000000000000000000000000000010051",
+  "position": {
+    "outcome": "NO",
+    "balanceRaw": "1000000",
+    "balanceHuman": 1,
+    "actualCostUsdMicros": "450000",
+    "maximumPayoutUsdMicros": "1000000",
+    "tUsdcWalletBalanceRaw": "999550000"
+  },
+  "shield": {
+    "shieldId": "0x83ee536847a3e15657f006d6ff8a6f85c9a4378df47d884f07209c95c93e8cb7",
+    "owner": "0x35A1A08E53051092228259259174C1a1E301D104",
+    "status": 3,
+    "statusLabel": "Resolved",
+    "marketId": "0x0000000000000000000000000000000000000000000000000000000000010051",
+    "protectionOrderTxHash": "0x2683372fa36bdeb2ddfd33661636abf79203632484942a9481477c0038242c0e",
+    "settlementReferenceHash": "0xfc5d736ed77f9b4e35ac7116731256adb27afb1bf519964dde9eb3ba5690ac7c",
+    "redemptionTxHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+    "exposureUsdMicros": "1000000000",
+    "protectedSharesMicros": "1000000",
+    "payoutUsdMicros": "0",
+    "eventContractExpiry": "1788260400",
+    "voided": false
+  },
+  "resolution": {
+    "marketId": "0x0000000000000000000000000000000000000000000000000000000000010051",
+    "status": "Resolved",
+    "isResolved": true,
+    "isVoided": false,
+    "winningOutcome": 0,
+    "openingPriceRaw": "245189",
+    "closingPriceRaw": "245671",
+    "oracleTransactionHash": "0x9b303faefd1e1811965165c6daef7e3d355dfb7516839e9467acbd701b222943",
+    "resolutionTransactionHash": "0x745c0d0db69be1e189ce51dff001b61094e3fd52334a5e2ea348eb4e071fc1b5"
+  },
+  "transactions": {
+    "funding": {
+      "hash": "0x0e6f0ff2bf78ae0a7486855f3f91ad08d5c117c971168a635720223a76811804",
+      "explorer": "https://shannon-explorer.somnia.network/tx/0x0e6f0ff2bf78ae0a7486855f3f91ad08d5c117c971168a635720223a76811804",
+      "status": "success",
+      "blockNumber": "476832099",
+      "gasUsed": "421000",
+      "logCount": 0
+    },
+    "deployment": {
+      "hash": "0xf23f6417feff61ba3e8e2bf6d5eb85cc5d37598caf3e1c18ef851726d1179901",
+      "explorer": "https://shannon-explorer.somnia.network/tx/0xf23f6417feff61ba3e8e2bf6d5eb85cc5d37598caf3e1c18ef851726d1179901",
+      "status": "success",
+      "blockNumber": "476833740",
+      "gasUsed": "11022714",
+      "logCount": 0
+    },
+    "collateralFaucet": {
+      "hash": "0x50bd4bdc6bb9a08df6297e37410d9d7daccf5d79b35b1303d8d1a34f0c52274a",
+      "explorer": "https://shannon-explorer.somnia.network/tx/0x50bd4bdc6bb9a08df6297e37410d9d7daccf5d79b35b1303d8d1a34f0c52274a",
+      "status": "success",
+      "blockNumber": "476837897",
+      "gasUsed": "253138",
+      "logCount": 1
+    },
+    "collateralApproval": {
+      "hash": "0x627ae3db70b65c7b77bc49d9ad2a30ced729c63c3712fd511db7faf0c536b78c",
+      "explorer": "https://shannon-explorer.somnia.network/tx/0x627ae3db70b65c7b77bc49d9ad2a30ced729c63c3712fd511db7faf0c536b78c",
+      "status": "success",
+      "blockNumber": "476837908",
+      "gasUsed": "259745",
+      "logCount": 1
+    },
+    "protection": {
+      "hash": "0x2683372fa36bdeb2ddfd33661636abf79203632484942a9481477c0038242c0e",
+      "explorer": "https://shannon-explorer.somnia.network/tx/0x2683372fa36bdeb2ddfd33661636abf79203632484942a9481477c0038242c0e",
+      "status": "success",
+      "blockNumber": "476837913",
+      "gasUsed": "795482",
+      "logCount": 7
+    },
+    "receipt": {
+      "hash": "0x9d2371ee1a08e4c5c9533a3729a004d5c8e8a6cea19edfee1a5f7d6250b02bee",
+      "explorer": "https://shannon-explorer.somnia.network/tx/0x9d2371ee1a08e4c5c9533a3729a004d5c8e8a6cea19edfee1a5f7d6250b02bee",
+      "status": "success",
+      "blockNumber": "476846120",
+      "gasUsed": "1714612",
+      "logCount": 1
+    },
+    "settlementAttestation": {
+      "hash": "0x13a99d56a326680d107ea7926c932845fe1129f255d298d6d57afcbc3dffe487",
+      "explorer": "https://shannon-explorer.somnia.network/tx/0x13a99d56a326680d107ea7926c932845fe1129f255d298d6d57afcbc3dffe487",
+      "status": "success",
+      "blockNumber": "476846129",
+      "gasUsed": "253562",
+      "logCount": 1
+    },
+    "redemption": null,
+    "finalReceipt": {
+      "hash": "0x7fe410cbe2de2091947038b9a8168ddcefe5cbb70761e13465ada74b8cf7b04e",
+      "explorer": "https://shannon-explorer.somnia.network/tx/0x7fe410cbe2de2091947038b9a8168ddcefe5cbb70761e13465ada74b8cf7b04e",
+      "status": "success",
+      "blockNumber": "476874652",
+      "gasUsed": "85310",
+      "logCount": 1
+    }
+  }
+}
