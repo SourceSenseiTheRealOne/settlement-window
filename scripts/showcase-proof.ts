@@ -44,8 +44,11 @@ async function main() {
     await page.goto("http://127.0.0.1:4180/", { waitUntil: "networkidle" });
     await page.getByRole("heading", { name: "Protect value while crypto settlement is pending." }).waitFor();
     await page.getByText("Pages showcase").waitFor();
+    await page.getByRole("heading", { name: "Settlement exposure" }).waitFor();
+    await page.getByRole("heading", { name: "Protection limits" }).waitFor();
+    await page.getByRole("heading", { name: "Verified lifecycle" }).waitFor();
     await page.getByRole("button", { name: "Calculate protection" }).click();
-    await page.getByRole("heading", { name: "Bounded terms" }).waitFor();
+    await page.getByRole("heading", { name: "Protection economics" }).waitFor();
     const terms = await page.locator("#quote-metrics").innerText();
     if (!terms.includes("$4.50") || !terms.includes("$10.00") || !terms.includes("$5.50")) {
       throw new Error(`Unexpected bounded terms: ${terms}`);

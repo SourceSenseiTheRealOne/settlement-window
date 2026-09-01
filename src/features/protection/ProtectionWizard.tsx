@@ -260,14 +260,20 @@ export function ProtectionWizard() {
   }
 
   return (
-    <section className="product-shell" aria-label="SettleShield protection workflow">
-      <div className="workflow-column">
-        <div className="section-heading">
+    <section id="protect" className="product-shell" aria-label="SettleShield protection workflow">
+      <div className="configuration-pane">
+        <div className="workspace-heading">
           <div>
-            <span className="step-label">Configure</span>
-            <h2>Protect this settlement</h2>
+            <span className="step-label">Protection workspace</span>
+            <h2>Price the settlement gap.</h2>
+            <p>Describe the pending value, then set the most you are willing to spend protecting it.</p>
           </div>
-          <span className="safety-chip">No leverage</span>
+          <span className="safety-note">No leverage / no liquidation</span>
+        </div>
+
+        <div className="group-heading">
+          <span>Exposure</span>
+          <h3>Settlement exposure</h3>
         </div>
 
         <div className="segmented" role="group" aria-label="Settlement type">
@@ -284,6 +290,10 @@ export function ProtectionWizard() {
             Settlement value (USD)
             <input inputMode="decimal" value={exposureUsd} onChange={(event) => setExposureUsd(event.target.value)} />
           </label>
+          <div className="group-heading full-field limits-heading">
+            <span>Limits</span>
+            <h3>Protection limits</h3>
+          </div>
           <label>
             Settlement window
             <select value={intervalSec} onChange={(event) => setIntervalSec(Number(event.target.value) as 900 | 3600)}>
@@ -292,13 +302,13 @@ export function ProtectionWizard() {
             </select>
           </label>
           <label>
-            Maximum protection cost
+            Maximum protection cost (USD)
             <input inputMode="decimal" value={maxCostUsd} onChange={(event) => setMaxCostUsd(event.target.value)} />
           </label>
           <label className="full-field">
-            Desired maximum compensation
+            Desired maximum payout (USD)
             <input inputMode="decimal" value={compensationUsd} onChange={(event) => setCompensationUsd(event.target.value)} />
-            <small>This is a cap, not a promise to cover the complete price move.</small>
+            <small>This is a cap, not a promise to cover the complete price move. Shannon test execution uses tUSDC as the equivalent test-dollar collateral unit.</small>
           </label>
         </div>
 
@@ -309,19 +319,19 @@ export function ProtectionWizard() {
         {error && <div className="error-message" role="alert">{error}</div>}
       </div>
 
-      <aside className="quote-column" aria-live="polite">
+      <aside className="economics-pane" aria-live="polite">
         {!quoteState ? (
           <div className="empty-quote">
-            <span className="empty-number">01</span>
-            <h2>Live terms appear here.</h2>
-            <p>SettleShield checks the Event Contract and refuses thin or over-budget protection.</p>
+            <span className="empty-label">Ready for quote</span>
+            <h2>Protection economics</h2>
+            <p>Set a budget and compensation cap. SettleShield will refuse thin, stale, or over-budget protection.</p>
           </div>
         ) : (
           <>
             <div className="section-heading">
               <div>
-                <span className="step-label">Live quote</span>
-                <h2>Bounded terms</h2>
+                <span className="step-label">Live market quote</span>
+                <h2>Protection economics</h2>
               </div>
               <span className="market-status">Trading</span>
             </div>

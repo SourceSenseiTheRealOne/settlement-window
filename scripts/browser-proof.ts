@@ -32,12 +32,15 @@ async function main() {
     await page.getByRole("heading", {
       name: "Protect value while crypto settlement is pending.",
     }).waitFor();
+    await page.getByRole("heading", { name: "Settlement exposure" }).waitFor();
+    await page.getByRole("heading", { name: "Protection limits" }).waitFor();
+    await page.getByRole("heading", { name: "Verified lifecycle" }).waitFor();
     await page.getByLabel("Settlement window").selectOption("3600");
     await page.waitForTimeout(250);
     await page.getByRole("button", { name: "Find protection" }).click();
     const outcome = await Promise.race([
       page
-        .getByRole("heading", { name: "Bounded terms" })
+        .getByRole("heading", { name: "Protection economics" })
         .waitFor({ timeout: 30_000 })
         .then(() => "quote" as const),
       page
