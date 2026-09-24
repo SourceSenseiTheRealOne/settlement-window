@@ -1,5 +1,8 @@
 # SettleShield Implementation Plan
 
+> Historical material from the **SettleShield** prototype. The current project is [Settlement Window](../README.md); use its current setup and evidence notes. Original names, claims and URLs below are retained as history, not current operating guidance.
+
+
 **Goal:** Build a hackathon-ready Shannon testnet application that buys bounded ETH DOWN Event Contract protection while an external crypto settlement is pending and records the linked lifecycle onchain.
 
 **Product boundary:** SettleShield is bounded settlement protection. It is not insurance, an option, or a guaranteed price lock. It never claims to cover the full price move.
