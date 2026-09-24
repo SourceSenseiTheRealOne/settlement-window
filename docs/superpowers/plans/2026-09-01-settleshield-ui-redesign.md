@@ -1,5 +1,8 @@
 # SettleShield UI Redesign Implementation Plan
 
+> Historical material from the **SettleShield** prototype. The current project is [Settlement Window](../../../README.md); use its current setup and evidence notes. Original names, claims and URLs below are retained as history, not current operating guidance.
+
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Replace the generic dark SaaS presentation with a deliberate settlement-infrastructure interface while preserving all existing product behavior.

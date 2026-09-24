@@ -1,5 +1,8 @@
 # SettleShield Hackathon Submission
 
+> Historical material from the **SettleShield** prototype. The current project is [Settlement Window](../README.md); use its current setup and evidence notes. Original names, claims and URLs below are retained as history, not current operating guidance.
+
+
 ## Tagline
 
 Bounded protection for crypto settlement time, powered by DreamDEX Event Contracts.

@@ -260,7 +260,7 @@ export function ProtectionWizard() {
   }
 
   return (
-    <section id="protect" className="product-shell" aria-label="SettleShield protection workflow">
+    <section id="protect" className="product-shell" aria-label="Settlement Window protection workflow">
       <div className="configuration-pane">
         <div className="workspace-heading">
           <div>
@@ -324,7 +324,7 @@ export function ProtectionWizard() {
           <div className="empty-quote">
             <span className="empty-label">Ready for quote</span>
             <h2>Protection economics</h2>
-            <p>Set a budget and compensation cap. SettleShield will refuse thin, stale, or over-budget protection.</p>
+            <p>Set a budget and compensation cap. Quotes check available liquidity and estimated cost; execution costs can change.</p>
           </div>
         ) : (
           <>

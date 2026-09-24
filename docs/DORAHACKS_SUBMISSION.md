@@ -1,5 +1,8 @@
 # DoraHacks submission sheet
 
+> Historical material from the **SettleShield** prototype. The current project is [Settlement Window](../README.md); use its current setup and evidence notes. Original names, claims and URLs below are retained as history, not current operating guidance.
+
+
 Official event: https://dorahacks.io/hackathon/event-contracts/detail
 
 Submission page: https://dorahacks.io/hackathon/event-contracts/buidl

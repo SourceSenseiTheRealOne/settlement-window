@@ -1,5 +1,8 @@
 # SettleShield demo script
 
+> Historical material from the **SettleShield** prototype. The current project is [Settlement Window](../README.md); use its current setup and evidence notes. Original names, claims and URLs below are retained as history, not current operating guidance.
+
+
 Target: 2 minutes 20 seconds to 2 minutes 45 seconds.
 
 Record the public showcase at:
