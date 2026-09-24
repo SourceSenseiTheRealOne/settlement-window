@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "SettleShield | Bounded settlement protection",
+  title: "Settlement Window | Bounded settlement protection",
   description:
     "Protect pending crypto settlements with bounded DreamDEX Event Contracts on Somnia Shannon testnet.",
 };

@@ -1,224 +1,55 @@
-# SettleShield
+# Settlement Window
 
-**Bounded protection for crypto settlement time, powered by DreamDEX Event Contracts.**
+A Somnia × DreamDEX hackathon prototype exploring partial protection against price changes while an ETH payment or transfer settles.
 
-SettleShield protects part of the USD value of a pending ETH payment, bridge transfer, or OTC settlement. While an external transaction is waiting to complete, SettleShield buys a capped ETH DOWN Event Contract position on DreamDEX. If ETH closes lower, the winning payout can offset part of the settlement loss. If ETH closes higher, the external ETH is worth more and the known protection cost is the maximum loss.
+**[Open the showcase](https://sourcesenseitherealone.github.io/settlement-window/)** · [Engineering](docs/engineering.md) · [Setup](docs/local-development.md) · [Verified evidence](docs/evidence.md)
 
-SettleShield is not insurance, an option, or a guaranteed price lock. Binary Event Contracts cannot reproduce a perfect hedge. The application always displays this limitation.
+The application quotes and executes ETH NO/DOWN Event Contracts, accounts for partial fills, and links the position to an owner-attested settlement receipt. The public showcase is a **static reference calculator and proof viewer**, not a live trading application.
 
-## Hackathon fit
+## Status
 
-SettleShield uses Event Contracts for an external economic workflow rather than speculative signal generation:
+A real Somnia Shannon testnet position bought one NO share for **0.45 tUSDC**. YES won; the position paid **zero**, and the receipt was finalized with zero compensation. The loss is retained in the evidence rather than presented as a successful hedge.
 
-- live ETH 15-minute and 1-hour Event Contract discovery;
-- onchain status checks before every write;
-- live DOWN/NO book depth and bounded quote calculation;
-- wallet-signed IOC order execution;
-- fill and position accounting;
-- external settlement attestation;
-- oracle resolution and payout redemption;
-- an onchain receipt linking the external settlement, protection order, and final payout.
+This is a hackathon project, not audited infrastructure, insurance, a guaranteed exchange rate or full coverage. Hackathon preparation is documented; no submission acceptance or award is claimed.
 
-## Safety behavior
+## Engineering focus
 
-- Shannon testnet only, chain ID `50312`.
-- ETH DOWN/NO positions only.
-- No leverage, borrowing, naked shorting, or liquidation.
-- User-defined maximum protection cost.
-- Requested compensation cannot exceed the external exposure.
-- Protection is refused when visible liquidity cannot supply the requested amount.
-- IOC orders only, so an unfilled remainder never rests with escrow locked.
-- Zero fills are failure. Partial fills are labeled partial protection.
-- Canonical onchain market status is checked immediately before execution.
-- Every transaction receipt is checked.
-- No private key is stored by the application.
+- **Financial calculations:** bigint USD-micro arithmetic in the application quote engine, with explicit liquidity, budget and compensation checks.
+- **Market identity:** stable market IDs checked against current pool/token wiring before execution, because pools can be reused.
+- **Execution accounting:** immediate-or-cancel orders, zero-fill rejection, partial-fill reporting and separate winning, losing and voided outcomes.
+- **Receipt lifecycle:** an owner-authorized Solidity registry links the position, settlement attestation and final accounting without holding funds.
 
-## Architecture
+Read the [trust boundaries and known limitations](docs/engineering.md#trust-boundaries) before treating the prototype as a financial control.
 
-```text
-Browser wallet
-    |
-    | 1. Request live quote
-    v
-Next.js market API
-    |
-    +--> @somnia-chain/markets-sdk
-    |      - Shannon indexer discovery
-    |      - onchain Trading status
-    |      - DOWN/NO order book
-    |
-    | 2. Sign IOC BUY_NO
-    v
-DreamDEX Event Contract pool
-    |
-    | 3. Link real fill
-    v
-SettleShieldReceipt contract
-    |
-    +--> external settlement attestation
-    +--> oracle resolution read
-    +--> winning NO redemption
-    +--> final payout receipt
-```
+## Run locally
 
-`marketId` is the stable Event Contract identity. Pool addresses are treated as current market wiring because DreamDEX recycles pools between windows.
-
-## Stack
-
-- Next.js 16.3.4
-- React 19.2.8
-- TypeScript 7 strict mode
-- `@somnia-chain/markets-sdk` 0.28.1
-- viem 2.56.1
-- Solidity 0.8.30 and Foundry
-- Vitest 4
-
-## Local setup
-
-Requirements:
-
-- Node.js 20 or newer
-- An injected EVM wallet for browser execution
-- Foundry in WSL for contract tests and deployment
-- Shannon STT for gas and DreamDEX test collateral
+Node.js 22 and pnpm 10.18.1 were used for verification. No wallet is needed to run the tests or inspect the interface.
 
 ```bash
-npx --yes pnpm@10.18.1 install
-cp .env.example .env.local
-npx --yes pnpm@10.18.1 dev
+pnpm install --frozen-lockfile
+pnpm test
+pnpm typecheck
+pnpm build
+pnpm start --hostname 127.0.0.1 --port 4173
 ```
 
-Open `http://localhost:3000`.
+For Solidity tests, run `forge test --root contracts` in a Linux/WSL environment with Foundry installed. See [local development](docs/local-development.md) for the read-only preview and transaction boundaries.
 
-## Environment
+## Project layout
 
-```dotenv
-NEXT_PUBLIC_SETTLESHIELD_RECEIPT_ADDRESS=0x...
-DREAMDEX_VENUE_ID=0x679795a0195a1b76cdebb7c51d74e058aee92919b8c3389af86ef24535e8a28c
-```
+| Path | Responsibility |
+|---|---|
+| `src/domain/` | Quote rules and financial calculations |
+| `src/lib/dreamdex/` | Market discovery, execution and resolution adapters |
+| `src/features/protection/` | Browser workflow |
+| `contracts/` | Receipt registry and Foundry tests |
+| `showcase/` | Public static calculator and original testnet evidence |
+| `docs/` | Engineering, verification and historical hackathon material |
 
-Optional CLI-only proof variables:
+**Stack:** Next.js, React, TypeScript, viem, Somnia Markets SDK, Solidity, Foundry and Vitest.
 
-```dotenv
-TESTNET_PRIVATE_KEY=0x...
-PROOF_EXECUTE=false
-PROOF_INTERVAL_SEC=900
-PROOF_EXPOSURE_USD=1000
-PROOF_COMPENSATION_USD=1
-PROOF_MAX_COST_USD=1
-```
+## Name and history
 
-Never commit `.env.local` or wallet credentials.
+Formerly **SettleShield**. The repository and visible product use Settlement Window; `SettleShieldReceipt`, environment-variable names, original proof files and historical records retain their existing identities. No contract was redeployed for the rename.
 
-## Test and build
-
-```bash
-npx --yes pnpm@10.18.1 test
-npx --yes pnpm@10.18.1 typecheck
-npx --yes pnpm@10.18.1 build
-npx --yes pnpm@10.18.1 browser:proof
-wsl.exe -d Ubuntu-24.04 -- bash -lc 'cd contracts && $HOME/.foundry/bin/forge test'
-```
-
-The browser proof launches an isolated headless Brave process, requests a live DreamDEX quote, checks desktop and mobile horizontal overflow, rejects console/page errors, and writes:
-
-- `docs/assets/settleshield-desktop.png`
-- `docs/assets/settleshield-mobile.png`
-
-## Shannon deployment
-
-- Receipt registry: [`0xd64b02dDd9d088FA8547F9740B841BEd056bDD2D`](https://shannon-explorer.somnia.network/address/0xd64b02dDd9d088FA8547F9740B841BEd056bDD2D)
-- Deployment transaction: [`0xf23f6417feff61ba3e8e2bf6d5eb85cc5d37598caf3e1c18ef851726d1179901`](https://shannon-explorer.somnia.network/tx/0xf23f6417feff61ba3e8e2bf6d5eb85cc5d37598caf3e1c18ef851726d1179901)
-- Deployment receipt: success
-- Runtime bytecode: 3,216 bytes
-
-## Verified Shannon proof
-
-- Market: `ETH-0-01SEP26-1100/tUSDC` (`0x0000000000000000000000000000000000000000000000000000000000010051`)
-- Protection: 1.0 NO/DOWN share purchased for 0.45 tUSDC; maximum payout 1.00 tUSDC
-- Protection transaction: [`0x2683372fa36bdeb2ddfd33661636abf79203632484942a9481477c0038242c0e`](https://shannon-explorer.somnia.network/tx/0x2683372fa36bdeb2ddfd33661636abf79203632484942a9481477c0038242c0e)
-- Receipt creation: [`0x9d2371ee1a08e4c5c9533a3729a004d5c8e8a6cea19edfee1a5f7d6250b02bee`](https://shannon-explorer.somnia.network/tx/0x9d2371ee1a08e4c5c9533a3729a004d5c8e8a6cea19edfee1a5f7d6250b02bee)
-- Settlement attestation: [`0x13a99d56a326680d107ea7926c932845fe1129f255d298d6d57afcbc3dffe487`](https://shannon-explorer.somnia.network/tx/0x13a99d56a326680d107ea7926c932845fe1129f255d298d6d57afcbc3dffe487)
-- Shield ID: `0x83ee536847a3e15657f006d6ff8a6f85c9a4378df47d884f07209c95c93e8cb7`
-- Resolution transaction: [`0x745c0d0db69be1e189ce51dff001b61094e3fd52334a5e2ea348eb4e071fc1b5`](https://shannon-explorer.somnia.network/tx/0x745c0d0db69be1e189ce51dff001b61094e3fd52334a5e2ea348eb4e071fc1b5)
-- Final receipt transaction: [`0x7fe410cbe2de2091947038b9a8168ddcefe5cbb70761e13465ada74b8cf7b04e`](https://shannon-explorer.somnia.network/tx/0x7fe410cbe2de2091947038b9a8168ddcefe5cbb70761e13465ada74b8cf7b04e)
-- Final outcome: YES/UP won. The NO protection paid 0, no losing redemption was submitted, and the receipt is `Resolved`.
-
-## Public showcase
-
-- GitHub repository: https://github.com/SourceSenseiTheRealOne/settleshield
-- GitHub Pages: https://sourcesenseitherealone.github.io/settleshield/
-- The Pages build is a static interactive calculator and proof viewer. Live market discovery and wallet execution remain in the full Next.js application.
-
-The local `proofs/testnet-proof.json` artifact is generated from receipt and balance readbacks and is intentionally ignored because it carries mutable runtime state.
-
-```bash
-npx --yes pnpm@10.18.1 testnet:assemble
-npx --yes pnpm@10.18.1 testnet:finalize
-```
-
-`testnet:finalize` is idempotent: it refuses unresolved markets, redeems only a winning/voided held position, verifies receipt status `Resolved`, and appends final explorer evidence.
-
-## Deploy the receipt registry to Shannon
-
-From WSL, with `TESTNET_PRIVATE_KEY` set only in your shell:
-
-```bash
-$HOME/.foundry/bin/forge create \
-  src/SettleShieldReceipt.sol:SettleShieldReceipt \
-  --root contracts \
-  --rpc-url https://api.infra.testnet.somnia.network \
-  --private-key "$TESTNET_PRIVATE_KEY" \
-  --broadcast
-```
-
-Copy the deployed contract address to `NEXT_PUBLIC_SETTLESHIELD_RECEIPT_ADDRESS`, then restart Next.js.
-
-## Real testnet proof
-
-The CLI proof refuses to send unless `PROOF_EXECUTE=true` and a signer plus receipt address are configured.
-
-```bash
-PROOF_EXECUTE=true npx --yes pnpm@10.18.1 testnet:proof
-```
-
-A sanitized receipt is written to `proofs/testnet-proof.json`. Private keys are never included.
-
-## Product flow
-
-1. Choose invoice or bridge transfer.
-2. Enter settlement value, expected window, maximum cost, and desired compensation.
-3. SettleShield finds the current ETH Event Contract and checks DOWN liquidity.
-4. Review direction, known cost, maximum payout, net offset, and visible depth.
-5. Connect a Shannon wallet and execute the IOC position.
-6. Record the fill in `SettleShieldReceipt`.
-7. Confirm the external settlement using its transaction or signed attestation reference.
-8. After DreamDEX resolution, redeem a winning DOWN position and finalize the receipt.
-
-## Repository map
-
-```text
-contracts/                       Solidity receipt registry and Foundry tests
-docs/DEMO_SCRIPT.md              2-3 minute truthful demo narration
-docs/DORAHACKS_SUBMISSION.md      copy-ready DoraHacks form content and checklist
-docs/SUBMISSION.md               hackathon submission copy
-docs/SDK_FEEDBACK.md             required SDK and docs feedback
-scripts/testnet-proof.ts         real Shannon proof runner
-src/domain/                      bounded quote rules
-src/lib/dreamdex/                market, order, resolution, wallet adapters
-src/lib/receipt/                 receipt contract writes
-src/features/protection/         product workflow UI
-src/app/api/                     market and resolution APIs
-```
-
-## Official resources
-
-- Hackathon: https://dorahacks.io/hackathon/event-contracts/detail
-- DreamDEX Event Contracts: https://docs.dreamdex.io/developers/event-contracts
-- DreamDEX Bot Kit: https://github.com/somnia-chain/dreamdex-bot-kit
-- Shannon explorer: https://shannon-explorer.somnia.network
-- Somnia testnet hub: https://testnet.somnia.network
-
-## License
-
-MIT
+Canonical collection: `hackathon-projects / somnia / settlement-window`.
