@@ -3,19 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="SettleShield uses DreamDEX Event Contracts to provide bounded protection while crypto settlement is pending.">
+  <meta name="description" content="Settlement Window uses DreamDEX Event Contracts to provide bounded protection while crypto settlement is pending.">
   <meta name="theme-color" content="#080d0c">
-  <title>SettleShield | Bounded settlement protection</title>
+  <title>Settlement Window | Bounded settlement protection</title>
   <link rel="icon" href="./icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="#top" aria-label="SettleShield home"><span class="brand-mark">S</span><span>SettleShield</span></a>
+    <a class="brand" href="#top" aria-label="Settlement Window home"><span class="brand-mark">S</span><span>Settlement Window</span></a>
     <nav class="topnav" aria-label="Primary navigation">
       <a href="#protect">Product</a>
       <a href="#proof">Proof</a>
-      <a href="https://github.com/SourceSenseiTheRealOne/settleshield">Source</a>
+      <a href="https://github.com/SourceSenseiTheRealOne/settlement-window">Source</a>
     </nav>
     <div class="pages-label">Pages showcase</div>
   </header>
@@ -25,17 +25,17 @@
       <div class="hero-copy">
         <p class="eyebrow">Settlement risk, bounded</p>
         <h1>Protect value while crypto settlement is pending.</h1>
-        <p class="hero-description">Set a cost ceiling. Buy a bounded ETH DOWN position. Keep the settlement and protection evidence linked onchain.</p>
+        <p class="hero-description">Review a cost estimate. Buy a bounded ETH DOWN position. Keep the settlement and protection evidence linked onchain.</p>
         <div class="hero-actions">
           <a class="primary-link" href="#protect">Price protection</a>
           <a class="text-link" href="#proof">Inspect the proof</a>
         </div>
       </div>
-      <aside class="mechanism" aria-label="How SettleShield works">
+      <aside class="mechanism" aria-label="How Settlement Window works">
         <div class="mechanism-header"><span>Settlement exposure</span><strong>15-60 min</strong></div>
         <div class="mechanism-row"><span>Invoice value</span><strong>$1,000 USD</strong></div>
         <div class="mechanism-row accent-row"><span>Bounded protection</span><strong>ETH DOWN</strong></div>
-        <div class="mechanism-result"><span>Maximum loss</span><strong>Known before execution</strong></div>
+        <div class="mechanism-result"><span>Quote cost</span><strong>Excludes network fees</strong></div>
       </aside>
     </section>
 
@@ -43,7 +43,7 @@
       <p>This static Pages build uses the verified 45% Shannon fill as a reference, not a live quote. Wallet execution remains in the full application.</p>
     </div>
 
-    <section id="protect" class="product-shell" aria-label="SettleShield protection calculator">
+    <section id="protect" class="product-shell" aria-label="Settlement Window protection calculator">
       <div class="configuration-pane">
         <div class="workspace-heading">
           <div>
@@ -75,7 +75,7 @@
         <div class="empty-quote" id="empty-quote">
           <span class="empty-label">Ready to calculate</span>
           <h2>Protection economics</h2>
-          <p>Set a budget and compensation cap. SettleShield will refuse thin, stale, or over-budget protection.</p>
+          <p>Explore example costs at the recorded fill price. This calculator does not check current liquidity.</p>
         </div>
         <div class="quote-result" id="quote-result" hidden>
           <div class="section-heading">
@@ -106,7 +106,7 @@
         <a class="proof-row" data-proof-link href="https://shannon-explorer.somnia.network/address/0xd64b02dDd9d088FA8547F9740B841BEd056bDD2D"><span>Receipt registry</span><strong>Deployed on Shannon</strong><span class="proof-arrow" aria-hidden="true">↗</span></a>
         <a class="proof-row" data-proof-link href="https://shannon-explorer.somnia.network/tx/0x2683372fa36bdeb2ddfd33661636abf79203632484942a9481477c0038242c0e"><span>BUY NO IOC</span><strong>1.00 NO at 0.45 tUSDC</strong><span class="proof-arrow" aria-hidden="true">↗</span></a>
         <a class="proof-row" data-proof-link href="https://shannon-explorer.somnia.network/tx/0x9d2371ee1a08e4c5c9533a3729a004d5c8e8a6cea19edfee1a5f7d6250b02bee"><span>Protection receipt</span><strong>Exposure and fill linked</strong><span class="proof-arrow" aria-hidden="true">↗</span></a>
-        <a class="proof-row" data-proof-link href="https://shannon-explorer.somnia.network/tx/0x13a99d56a326680d107ea7926c932845fe1129f255d298d6d57afcbc3dffe487"><span>Settlement attestation</span><strong>External event confirmed</strong><span class="proof-arrow" aria-hidden="true">↗</span></a>
+        <a class="proof-row" data-proof-link href="https://shannon-explorer.somnia.network/tx/0x13a99d56a326680d107ea7926c932845fe1129f255d298d6d57afcbc3dffe487"><span>Settlement attestation</span><strong>Owner-attested settlement</strong><span class="proof-arrow" aria-hidden="true">↗</span></a>
         <a class="proof-row" data-proof-link href="https://shannon-explorer.somnia.network/tx/0x745c0d0db69be1e189ce51dff001b61094e3fd52334a5e2ea348eb4e071fc1b5"><span>DreamDEX resolution</span><strong>YES won</strong><span class="proof-arrow" aria-hidden="true">↗</span></a>
         <a class="proof-row" data-proof-link href="https://shannon-explorer.somnia.network/tx/0x7fe410cbe2de2091947038b9a8168ddcefe5cbb70761e13465ada74b8cf7b04e"><span>Final receipt</span><strong>Resolved with 0 payout</strong><span class="proof-arrow" aria-hidden="true">↗</span></a>
         <a class="proof-row proof-download" data-proof-link href="./testnet-proof.json"><span>Sanitized evidence</span><strong>Open proof JSON</strong><span class="proof-arrow" aria-hidden="true">↓</span></a>
@@ -119,7 +119,7 @@
     </section>
   </main>
 
-  <footer class="site-footer"><p>Bounded protection for settlement time. No leverage. No liquidation. No promise of full coverage.</p><a href="https://github.com/SourceSenseiTheRealOne/settleshield">Public source repository</a></footer>
+  <footer class="site-footer"><p>Bounded protection for settlement time. No leverage. No liquidation. No promise of full coverage.</p><a href="https://github.com/SourceSenseiTheRealOne/settlement-window">Public source repository</a></footer>
 
   <script>
     const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", minimumFractionDigits: 2 });

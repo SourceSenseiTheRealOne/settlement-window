@@ -15,7 +15,7 @@ const evidence = [
   },
   {
     label: "Settlement attestation",
-    value: "External event confirmed",
+    value: "Owner-attested settlement",
     href: `${EXPLORER}/tx/0x13a99d56a326680d107ea7926c932845fe1129f255d298d6d57afcbc3dffe487`,
   },
   {
@@ -29,14 +29,14 @@ export default function Home() {
   return (
     <main>
       <header className="topbar">
-        <a className="brand" href="#top" aria-label="SettleShield home">
+        <a className="brand" href="#top" aria-label="Settlement Window home">
           <span className="brand-mark">S</span>
-          <span>SettleShield</span>
+          <span>Settlement Window</span>
         </a>
         <nav className="topnav" aria-label="Primary navigation">
           <a href="#protect">Product</a>
           <a href="#proof">Proof</a>
-          <a href="https://github.com/SourceSenseiTheRealOne/settleshield" target="_blank" rel="noreferrer">Source</a>
+          <a href="https://github.com/SourceSenseiTheRealOne/settlement-window" target="_blank" rel="noreferrer">Source</a>
         </nav>
         <div className="network-label"><span aria-hidden="true" />Somnia Shannon</div>
       </header>
@@ -46,7 +46,7 @@ export default function Home() {
           <p className="eyebrow">Settlement risk, bounded</p>
           <h1>Protect value while crypto settlement is pending.</h1>
           <p className="hero-description">
-            Set a cost ceiling. Buy a bounded ETH DOWN position. Keep the settlement and protection evidence linked onchain.
+            Review a cost estimate. Buy a bounded ETH DOWN position. Keep the settlement and protection evidence linked onchain.
           </p>
           <div className="hero-actions">
             <a className="primary-link" href="#protect">Price protection</a>
@@ -54,7 +54,7 @@ export default function Home() {
           </div>
         </div>
 
-        <aside className="mechanism" aria-label="How SettleShield works">
+        <aside className="mechanism" aria-label="How Settlement Window works">
           <div className="mechanism-header">
             <span>Settlement exposure</span>
             <strong>15-60 min</strong>
@@ -68,8 +68,8 @@ export default function Home() {
             <strong>ETH DOWN</strong>
           </div>
           <div className="mechanism-result">
-            <span>Maximum loss</span>
-            <strong>Known before execution</strong>
+            <span>Quote cost</span>
+            <strong>Excludes network fees</strong>
           </div>
         </aside>
       </section>
@@ -103,7 +103,7 @@ export default function Home() {
 
       <footer className="site-footer">
         <p>Bounded protection for settlement time. No leverage. No liquidation. No promise of full coverage.</p>
-        <a href="https://sourcesenseitherealone.github.io/settleshield/testnet-proof.json" target="_blank" rel="noreferrer">Public proof JSON</a>
+        <a href="https://sourcesenseitherealone.github.io/settlement-window/testnet-proof.json" target="_blank" rel="noreferrer">Public proof JSON</a>
       </footer>
     </main>
   );
